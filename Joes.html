@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+    <style>
+        * { box-sizing: border-box;}
+
+        .heading h4:first-of-type{
+            float: left;
+        }
+        .heading2 h4:last-of-type{
+            float: right;
+        }
+        h5{
+            font-size: 120%;
+            font-family:'Times New Roman', Times, serif
+        }
+        h6{
+            font-size: 100%;
+            font-family:'Times New Roman', Times, serif
+        }
+        .row:after{
+            content:"";
+            display: table;
+            clear:both;
+        }
+         .column {
+            float: left;
+            text-align: center;
+            margin-top: 0%;
+        }
+        .left{
+            width:30%;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+        .right{
+            width:30%;           
+            margin-top: 5%;
+        }   
+
+        .middle{
+            width:30%;    
+            margin-top: 5%;
+        }
+
+        body{ 
+            background-image: url("Hotdog2.jpeg");
+            background-size: 100% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;  
+        }
+
+        .reciept{
+            margin-top: 15%;
+            background-color: rgba(129, 215, 236, 0.774);
+            position: relative;
+            width: 45%;
+            padding-left: 2%;
+            padding-right: 2%;
+            text-align: center;
+            margin-left: 30%;
+        }
+
+        hr.new1{
+            border-top: 1px dotted white;
+        }
+    </style>
+    
+
+</head>
+
+<body >
+
+    <!-- Order Calculations -->
+    <script lang="javascript">
+
+        orderH = parseInt( prompt( " How many hotdogs would you like?"));
+        orderF = parseInt ( prompt( " How many fries would you like?"));
+        orderS = parseInt (prompt( " How many sodas would you like?"));
+
+        discount = new Boolean(false);
+
+        foodPrice = [3.75, 2.00, 1.50];
+        food = [ "Hotdogs", "Fries", "Soda"];
+        quantity = [ orderH, orderF, orderS];
+        orderCost = 0;
+        discountCost = 0;
+        subtotal = 0;
+
+        /* Order Calculations */
+        for (i=0; i < quantity.length; i++) 
+        {
+            for (i=0; i < foodPrice.length; i++) 
+            {
+                orderCost = orderCost + foodPrice[i] * quantity[i];   
+            }
+            subtotal = orderCost.toFixed(2);
+        }
+
+        if ( orderCost >= 20.00 ){
+            discountCost = (orderCost - orderCost * 0.1).toFixed(2);
+            discount = true;
+        }
+
+    </script> 
+    
+    <!-- Visuals -->
+    <div class = "reciept">
+        <!--- Heading of reciept -->
+        <h1 style = "margin: 2%; font-size: 300%;"> Joes Hotdogs </h1>
+        <h4 style = "margin: 0%; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> Address: 49 Rivere Avenue, Boston, MA</h4>
+        <h4 style = "text-align: left; margin-bottom: 0%;"> Cashier: Online order </h4>
+        
+        <div class = " row ">
+            <div class = "column left" > 
+                <h3> Qty </h3>
+                
+            </div>
+            <div class = "column middle">
+                <h3> Desc </h3>
+                
+            </div>
+            <div class = "column right">
+          
+                <h3> Amt </h3>
+            </div>
+        </div>
+
+        <hr class= "new1">
+
+        <div class= "row">
+             <!-- Leftward column -->
+            <div class = "column left">
+                <p> 
+                    <script>
+                        for ( i=0; i < quantity.length != 0; i++){
+                            for ( i=0; i < food.length != 0; i++){
+                                if (quantity[i] != 0){
+                                    document.write(`<h5 style = " text-align:left; padding-left: 5%; word-spacing:20%; "> ${ quantity[i]} </h5>` );
+    
+                                }
+                            }   
+                        }
+
+                        document.write(`<h6  style =" text-align:left; padding-left: 5%; margin-top:0%;" > Subtotal: <br> </br>`);
+                        if (discount == true) {
+                            document.write(`<h6  style =" text-align:left; padding-left: 5%; margin-bottom:0%;" > Discount (10%): </h6> <br> </br>`);
+                        }
+                        document.write(`<h6  style =" text-align:left; padding-left: 5%; margin-top:0%;" > State Taxes (6.25%): <br> </br>`);
+                    </script>
+                </p>
+
+            </div>
+            <!-- Center column -->
+            <div class = "column middle">
+                <p style="align: center"> 
+                    <script>
+                        for ( i=0; i < quantity.length != 0; i++){
+                            for ( i=0; i < food.length != 0; i++){
+                                if (quantity[i] != 0){
+                                    document.write(`<h5 style = " text-align:center; word-spacing:20%; "> ${food[i] }</h5>` );
+                                }
+                            }   
+                        }
+                    </script>
+                </p>
+
+            </div>
+
+            <!-- Rightard column -->
+            <div class ="column right">
+                
+            <p>
+                <script>
+                    for ( i=0; i < quantity.length != 0; i++){ 
+                        for ( i=0; i < foodPrice.length != 0; i++){ 
+                            x = quantity[i] * foodPrice[i]; 
+                            if (x != 0){
+                                document.write(`<h5 style="margin-top =50%"> $ ${x.toFixed(2)} </h5>`)
+                            }
+                        }    
+                    }
+                    document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${subtotal} <br> </br>`);
+                    if (discount == true) {
+                        document.write( `<h6  style = "margin-bottom:0%;" > - $ ${(subtotal * 0.1).toFixed(2)} <br> </br>`);
+                        }
+                        document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${(discountCost * 0.0625).toFixed(2)} <br> </br>`);
+                </script>
+            </p>
+            </div>
+        </div>
+
+        <div class = "row"> 
+            <hr class= "new1">
+
+            <div class = row>
+                <div class = "column left"> 
+
+                </div>
+                <div class = "column middle">
+                    <h4 style="margin-top: 0%;"> Total: </h4>
+                </div>
+                
+                <div class = "column right"> 
+                    <script>  
+                        total = parseFloat(discountCost) + (discountCost * 0.0625);
+                        total = total.toFixed(2);
+                        document.write(`$ ${total}`);
+                    </script>
+                </div>       
+            </div>
+        </div>
+
+    </div>
+</body> 
+</html>
