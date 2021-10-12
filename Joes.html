@@ -184,8 +184,13 @@
                     document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${subtotal} <br> </br>`);
                     if (discount == true) {
                         document.write( `<h6  style = "margin-bottom:0%;" > - $ ${(subtotal * 0.1).toFixed(2)} <br> </br>`);
+                        
+                        document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${(discountCost * 0.0625).toFixed(2)} <br> </br>`);   
+                        }else {
+                            document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${(orderCost * 0.0625).toFixed(2)} <br> </br>`);
                         }
-                        document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${(discountCost * 0.0625).toFixed(2)} <br> </br>`);
+                        
+                        // document.write(`<h6  style =" margin-bottom:0%; margin-top:20%;" > $ ${(discountCost * 0.0625).toFixed(2)} <br> </br>`);
                 </script>
             </p>
             </div>
@@ -204,9 +209,15 @@
                 
                 <div class = "column right"> 
                     <script>  
+                        if (discount == true) {
                         total = parseFloat(discountCost) + (discountCost * 0.0625);
                         total = total.toFixed(2);
                         document.write(`$ ${total}`);
+                        }else{
+                            total = parseFloat(orderCost) + (orderCost * 0.0625);
+                        total = total.toFixed(2);
+                        document.write(`$ ${total}`);
+                        }
                     </script>
                 </div>       
             </div>
